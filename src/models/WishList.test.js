@@ -1,3 +1,4 @@
+import { getSnapshot, onSnapshot, onPatch } from 'mobx-state-tree';
 import { WishListItem, WishList } from './WishList';
 
 it('can create a instance of a model', () => {
@@ -10,8 +11,8 @@ it('can create a instance of a model', () => {
   expect(item.price).toBe(56.78);
   expect(item.image).toBe('');
 
-  item.changeName('Narnia')
-  expect(item.name).toBe('Narnia')
+  item.changeName('Narnia');
+  expect(item.name).toBe('Narnia');
 });
 
 it('can create a wishlist', () => {
@@ -29,14 +30,42 @@ it('can create a wishlist', () => {
 });
 
 it('can add new items', () => {
-  const list = WishList.create()
-  list.add(WishListItem.create({
-    name: 'Hello World',
-    price: 10
-  }))
+  const list = WishList.create();
+  const states = [];
 
-  expect(list.items.length).toBe(1)
-  expect(list.items[0].name).toBe('Hello World')
-  list.items[0].changeName('Harry Potter')
-  expect(list.items[0].name).toBe('Harry Potter')
-})
+  onSnapshot(list, snapshot => {
+    states.push(snapshot);
+  });
+
+  list.add({
+    name: 'Hello World',
+    price: 10,
+  });
+
+  expect(list.items.length).toBe(1);
+  expect(list.items[0].name).toBe('Hello World');
+  list.items[0].changeName('Harry Potter');
+  expect(list.items[0].name).toBe('Harry Potter');
+
+  expect(getSnapshot(list)).toMatchSnapshot();
+
+  expect(states).toMatchSnapshot();
+});
+
+it('can add new items - 2', () => {
+  const list = WishList.create();
+  const patches = [];
+
+  onPatch(list, patch => {
+    patches.push(patch);
+  });
+
+  list.add({
+    name: 'Hello World',
+    price: 10,
+  });
+
+  list.items[0].changeName('Harry Potter');
+
+  expect(patches).toMatchSnapshot();
+});
