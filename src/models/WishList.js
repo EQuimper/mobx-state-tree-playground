@@ -26,4 +26,9 @@ export const WishList = types
     add(item) {
       self.items.push(item);
     },
-  }));
+  }))
+  .views(self => ({
+    get totalPrice() {
+      return self.items.reduce((sum, item) => sum + item.price, 0)
+    }
+  }))
