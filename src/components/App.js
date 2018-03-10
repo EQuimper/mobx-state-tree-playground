@@ -18,6 +18,10 @@ class App extends Component {
     const selectedUser = group.users.get(this.state.selectedUser);
     return (
       <div>
+        <br/>
+        <button onClick={group.reload}>Reload</button>
+        <br/>
+        <br/>
         <button onClick={group.drawLots}>Draw lots</button>
         <br />
         <br />
@@ -47,4 +51,4 @@ const User = observer(({ user }) => (
   </div>
 ));
 
-export default App;
+export default observer(App);

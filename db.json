@@ -26,5 +26,36 @@
       "image":
         "https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyOTM4MDMxNV5BMl5BanBnXkFtZTcwNjIyNzExOA@@._V1_UX182_CR0,0,182,268_AL_.jpg"
     }
-  ]
+  ],
+  "users": {
+    "5cf2": {
+      "id": "5cf2",
+      "name": "Marge",
+      "gender": "f",
+      "wishList": { "items": [] },
+      "recipient": "567c"
+    },
+    "567c": {
+      "id": "567c",
+      "name": "Bart",
+      "gender": "m",
+      "wishList": {
+        "items": [
+          {
+            "name": "Man of Steel",
+            "price": 12.2,
+            "image":
+              "https://images-na.ssl-images-amazon.com/images/M/MV5BMTk5ODk1NDkxMF5BMl5BanBnXkFtZTcwNTA5OTY0OQ@@._V1_UX182_CR0,0,182,268_AL_.jpg"
+          },
+          {
+            "name": "The Amazing Spiderman",
+            "price": 20.12,
+            "image":
+              "https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyOTM4MDMxNV5BMl5BanBnXkFtZTcwNjIyNzExOA@@._V1_UX182_CR0,0,182,268_AL_.jpg"
+          }
+        ]
+      },
+      "recipient": "5cf2"
+    }
+  }
 }
