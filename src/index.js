@@ -1,37 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { onSnapshot } from 'mobx-state-tree';
+import { onSnapshot, addMiddleware } from 'mobx-state-tree';
 
 import './assets/index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
+import { Group } from './models/Group';
 import { WishList } from './models/WishList';
 
 let initialState = {
-  items: [
-    {
-      name: 'Harry Potter',
-      price: 50,
+  users: {
+    '5cf2': {
+      id: '5cf2',
+      name: 'Marge',
+      gender: 'f',
     },
-    {
-      name: 'Lord of the Rings',
-      price: 40,
+    '567c': {
+      id: '567c',
+      name: 'Bart',
+      gender: 'm',
     },
-  ],
+  },
 };
 
-if (localStorage.getItem('wishListApp')) {
-  initialState = JSON.parse(localStorage.getItem('wishListApp'));
-}
+// if (localStorage.getItem('wishListApp')) {
+//   const json = JSON.parse(localStorage.getItem('wishListApp'));
+//   // Make sure state keep the same shape when change lot
+//   if (WishList.is(json)) {
+//     initialState = json;
+//   }
+// }
 
-const wishList = WishList.create(initialState);
+const group = Group.create(initialState);
 
-onSnapshot(wishList, snapshot => {
-  localStorage.setItem('wishListApp', JSON.stringify(snapshot));
+addMiddleware(group, (call, next) => {
+  console.log(`[${call.type}] ${call.name}`);
+  return next(call);
 });
 
-ReactDOM.render(<App wishList={wishList} />, document.getElementById('root'));
+// onSnapshot(wishList, snapshot => {
+//   localStorage.setItem('wishListApp', JSON.stringify(snapshot));
+// });
+
+ReactDOM.render(<App group={group} />, document.getElementById('root'));
 
 // setInterval(() => {
 //   wishList.items[0].changePrice(wishList.items[0].price + 1);

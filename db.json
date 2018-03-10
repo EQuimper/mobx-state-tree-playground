@@ -1,0 +1,30 @@
+{
+  "suggestions_f": [
+    {
+      "name": "The Notebook",
+      "price": 10.31,
+      "image":
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTk3OTM5Njg5M15BMl5BanBnXkFtZTYwMzA0ODI3._V1_UX182_CR0,0,182,268_AL_.jpg"
+    },
+    {
+      "name": "Wonder Woman",
+      "price": 15.41,
+      "image":
+        "https://www.warnerbros.com/sites/default/files/styles/key_art_270x400/public/movies/media/browser/wonder_woman_whv_keyart.jpg?itok=cihiSYDU"
+    }
+  ],
+  "suggestions_m": [
+    {
+      "name": "Man of Steel",
+      "price": 12.2,
+      "image":
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTk5ODk1NDkxMF5BMl5BanBnXkFtZTcwNTA5OTY0OQ@@._V1_UX182_CR0,0,182,268_AL_.jpg"
+    },
+    {
+      "name": "The Amazing Spiderman",
+      "price": 20.12,
+      "image":
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyOTM4MDMxNV5BMl5BanBnXkFtZTcwNjIyNzExOA@@._V1_UX182_CR0,0,182,268_AL_.jpg"
+    }
+  ]
+}
