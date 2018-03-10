@@ -24,13 +24,13 @@ let initialState = {
   },
 };
 
-// if (localStorage.getItem('wishListApp')) {
-//   const json = JSON.parse(localStorage.getItem('wishListApp'));
-//   // Make sure state keep the same shape when change lot
-//   if (WishList.is(json)) {
-//     initialState = json;
-//   }
-// }
+if (localStorage.getItem('wishListApp')) {
+  const json = JSON.parse(localStorage.getItem('wishListApp'));
+  // Make sure state keep the same shape when change lot
+  if (Group.is(json)) {
+    initialState = json;
+  }
+}
 
 const group = Group.create(initialState);
 
@@ -39,9 +39,9 @@ addMiddleware(group, (call, next) => {
   return next(call);
 });
 
-// onSnapshot(wishList, snapshot => {
-//   localStorage.setItem('wishListApp', JSON.stringify(snapshot));
-// });
+onSnapshot(group, snapshot => {
+  localStorage.setItem('wishListApp', JSON.stringify(snapshot));
+});
 
 ReactDOM.render(<App group={group} />, document.getElementById('root'));
 
