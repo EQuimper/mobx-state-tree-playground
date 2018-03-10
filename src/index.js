@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { onSnapshot } from 'mobx-state-tree';
 
 import './assets/index.css';
 import App from './components/App';
@@ -7,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { WishList } from './models/WishList';
 
-const wishList = WishList.create({
+let initialState = {
   items: [
     {
       name: 'Harry Potter',
@@ -18,6 +19,16 @@ const wishList = WishList.create({
       price: 40,
     },
   ],
+};
+
+if (localStorage.getItem('wishListApp')) {
+  initialState = JSON.parse(localStorage.getItem('wishListApp'));
+}
+
+const wishList = WishList.create(initialState);
+
+onSnapshot(wishList, snapshot => {
+  localStorage.setItem('wishListApp', JSON.stringify(snapshot));
 });
 
 ReactDOM.render(<App wishList={wishList} />, document.getElementById('root'));
